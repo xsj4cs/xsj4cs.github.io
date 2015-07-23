@@ -4,38 +4,53 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>java简易爬虫 | xsj4cs blog</title>
+    <title>java数组排序 | xsj4cs blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="xsj4cs">
     
 
     
-    <meta name="description" content="大致思路：
-1.连接URL。2.从连接处建立读入流。3.决定正则表达式4.对正则表达式编译封装成Pattern。5.建立Matcher机。6.find一下，group一下。接下来的思路，一般是把网页中的URL存储到queue中，从队列中取出，再次爬虫（宽搜）。
-import java.net.*;
-import java.io.*;
-import java.util.regex.*;
-public">
+    <meta name="description" content="定义数组可以这样，比如int a[] = new int[10];
+import java.util.Arrays;
+import java.util.Comparator;
+class Dog{
+    int size;    
+    public Dog(int s){
+        size = s;
+    }
+}
+
+class DogSizeComparator implement">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java简易爬虫">
-<meta property="og:url" content="http://yoursite.com/2015/07/23/20150723/index.html">
+<meta property="og:title" content="java数组排序">
+<meta property="og:url" content="http://yoursite.com/2015/07/23/20150723x/index.html">
 <meta property="og:site_name" content="xsj4cs blog">
-<meta property="og:description" content="大致思路：
-1.连接URL。2.从连接处建立读入流。3.决定正则表达式4.对正则表达式编译封装成Pattern。5.建立Matcher机。6.find一下，group一下。接下来的思路，一般是把网页中的URL存储到queue中，从队列中取出，再次爬虫（宽搜）。
-import java.net.*;
-import java.io.*;
-import java.util.regex.*;
-public">
-<meta property="og:updated_time" content="2015-07-23T06:48:25.389Z">
+<meta property="og:description" content="定义数组可以这样，比如int a[] = new int[10];
+import java.util.Arrays;
+import java.util.Comparator;
+class Dog{
+    int size;    
+    public Dog(int s){
+        size = s;
+    }
+}
+
+class DogSizeComparator implement">
+<meta property="og:updated_time" content="2015-07-23T09:22:25.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java简易爬虫">
-<meta name="twitter:description" content="大致思路：
-1.连接URL。2.从连接处建立读入流。3.决定正则表达式4.对正则表达式编译封装成Pattern。5.建立Matcher机。6.find一下，group一下。接下来的思路，一般是把网页中的URL存储到queue中，从队列中取出，再次爬虫（宽搜）。
-import java.net.*;
-import java.io.*;
-import java.util.regex.*;
-public">
+<meta name="twitter:title" content="java数组排序">
+<meta name="twitter:description" content="定义数组可以这样，比如int a[] = new int[10];
+import java.util.Arrays;
+import java.util.Comparator;
+class Dog{
+    int size;    
+    public Dog(int s){
+        size = s;
+    }
+}
+
+class DogSizeComparator implement">
 
     
     <link rel="alternative" href="/atom.xml" title="xsj4cs blog" type="application/atom+xml">
@@ -95,14 +110,14 @@ public">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/07/23/20150723/" title="java简易爬虫" itemprop="url">java简易爬虫</a>
+      <a href="/2015/07/23/20150723x/" title="java数组排序" itemprop="url">java数组排序</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="xsj4cs" target="_blank" itemprop="author">xsj4cs</a>
 		
   <p class="article-time">
-    <time datetime="2015-07-23T06:35:34.000Z" itemprop="datePublished"> 发表于 2015-07-23</time>
+    <time datetime="2015-07-23T09:17:35.000Z" itemprop="datePublished"> 发表于 2015-07-23</time>
     
   </p>
 </header>
@@ -115,28 +130,42 @@ public">
 		
 		</div>
 		
-		<p>大致思路：</p>
-<p>1.连接URL。<br>2.从连接处建立读入流。<br>3.决定正则表达式<br>4.对正则表达式编译封装成Pattern。<br>5.建立Matcher机。<br>6.find一下，group一下。<br>接下来的思路，一般是把网页中的URL存储到queue中，从队列中取出，再次爬虫（宽搜）。</p>
-<pre><code><span class="keyword">import</span> java.net.*;
-<span class="keyword">import</span> java.io.*;
-<span class="keyword">import</span> java.util.regex.*;
-<span class="keyword">public</span> class Spider {
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span> args[]) <span class="keyword">throws</span> Exception{
-        getMail();
+		<p>定义数组可以这样，比如int a[] = new int[10];</p>
+<pre><code><span class="keyword">import</span> java.util.Arrays;
+<span class="keyword">import</span> java.util.Comparator;
+<span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>{
+    <span class="keyword">int</span> size;    
+    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(<span class="keyword">int</span> s)</span></span>{
+        size = s;
     }
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> getMail() <span class="keyword">throws</span> Exception{
-        URL url = <span class="keyword">new</span> URL(<span class="string">"http://tieba.baidu.com/p/3856188322"</span>);
-        URLConnection con = url.openConnection();
-        <span class="keyword">BufferedReader</span> bufin = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(con.getInputStream()));
-        <span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;
-        <span class="keyword">String</span> mailreg = <span class="string">"\\w+@\\w+[\\.\\w+]+"</span>;
-        Pattern p = Pattern.compile(mailreg);
-        <span class="keyword">while</span>( (<span class="built_in">line</span> = bufin.readLine()) != <span class="keyword">null</span>) {
-            Matcher m = p.matcher(<span class="built_in">line</span>);
-            <span class="keyword">while</span>(m.find()){
-                System.out.<span class="built_in">println</span>(m.group());
-            }
-        }
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">DogSizeComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Dog</span>&gt;</span>{
+    <span class="annotation">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Dog o1, Dog o2)</span> </span>{
+        <span class="keyword">return</span> o1.size - o2.size;
+    }
+}    
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySort</span> </span>{
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+        Dog d1 = <span class="keyword">new</span> Dog(<span class="number">2</span>);
+        Dog d2 = <span class="keyword">new</span> Dog(<span class="number">1</span>);
+        Dog d3 = <span class="keyword">new</span> Dog(<span class="number">3</span>);
+
+        Dog[] dogArray = {d1, d2, d3};
+        printDogs(dogArray);
+
+        Arrays.sort(dogArray, <span class="keyword">new</span> DogSizeComparator());    
+        printDogs(dogArray);
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDogs</span><span class="params">(Dog[] dogs)</span></span>{
+        <span class="keyword">for</span>(Dog d: dogs)
+            System.out.print(d.size + <span class="string">" "</span> );
+
+        System.out.println();
     }
 }
 </code></pre>  
@@ -145,18 +174,13 @@ public">
 <div class="article-catetags">
 
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/java/">java</a>
-  </div>
-
 </div>
 
 
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/07/23/20150723/" data-title="java简易爬虫 | xsj4cs blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/07/23/20150723x/" data-title="java数组排序 | xsj4cs blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -169,19 +193,11 @@ public">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/07/23/20150723x/" title="java数组排序">
-  <strong>上一篇：</strong><br/>
-  <span>
-  java数组排序</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/07/22/hello-world/"  title="Hello World">
+<a href="/2015/07/23/20150723/"  title="java简易爬虫">
  <strong>下一篇：</strong><br/> 
- <span>Hello World
+ <span>java简易爬虫
 </span>
 </a>
 </div>
