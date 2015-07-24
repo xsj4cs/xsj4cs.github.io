@@ -81,6 +81,120 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/07/24/20150724/" title="java爬虫稍修改" itemprop="url">java爬虫稍修改</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="xsj4cs" target="_blank" itemprop="author">xsj4cs</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-24T07:19:24.000Z" itemprop="datePublished"> 发表于 2015-07-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <pre><code><span class="keyword">import</span> java.net.*;
+<span class="keyword">import</span> java.io.*;
+<span class="keyword">import</span> java.util.regex.*;
+<span class="keyword">import</span> java.util.*;
+<span class="comment">//import java.util.Queue;</span>
+<span class="comment">//import java.util.LinkedList;</span>
+
+<span class="keyword">public</span> class Spider {
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span> args[]) <span class="keyword">throws</span> Exception {
+        getMail();
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> getMail() <span class="keyword">throws</span> Exception {
+        URL url = <span class="keyword">new</span> URL(<span class="string">"http://tieba.baidu.com/p/3856188322"</span>);
+        Queue&lt;URL&gt; q = <span class="keyword">new</span> LinkedList&lt;URL&gt;();
+        <span class="keyword">HashMap</span> hm = <span class="keyword">new</span> <span class="keyword">HashMap</span>();
+        hm.put(url, <span class="number">1</span>);
+        q.<span class="built_in">add</span>(url);
+        <span class="keyword">while</span> ((url = q.poll()) != <span class="keyword">null</span>) {
+            <span class="keyword">try</span> {
+                URLConnection con = url.openConnection();
+                <span class="keyword">BufferedReader</span> bufin = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(
+                        <span class="keyword">new</span> InputStreamReader(con.getInputStream()));
+            } <span class="keyword">catch</span> (Exception e) {
+                <span class="keyword">continue</span>;
+            }
+            URLConnection con = url.openConnection();
+            <span class="keyword">BufferedReader</span> bufin = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(
+                    con.getInputStream()));
+            <span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;
+            <span class="keyword">String</span> mailreg = <span class="string">"\\w+@\\w+[\\.\\w+]+"</span>;
+            <span class="keyword">String</span> urlreg = <span class="string">"http.*?\""</span>;
+            Pattern p = Pattern.compile(mailreg);
+            Pattern purl = Pattern.compile(urlreg);
+            <span class="keyword">while</span> ((<span class="built_in">line</span> = bufin.readLine()) != <span class="keyword">null</span>) {
+                Matcher m = p.matcher(<span class="built_in">line</span>);
+                Matcher murl = purl.matcher(<span class="built_in">line</span>);
+                <span class="keyword">while</span> (m.find()) {
+                    System.out.<span class="built_in">println</span>(m.group());
+                }
+                <span class="keyword">while</span> (murl.find()) {
+                    <span class="keyword">String</span> tmp = murl.group().toString();
+                    tmp = tmp.replaceAll(<span class="string">"\""</span>, <span class="string">""</span>);
+                    <span class="built_in">boolean</span> flag = <span class="keyword">false</span>;
+                    <span class="keyword">try</span> {
+                        URL ttmp = <span class="keyword">new</span> URL(tmp);
+                    } <span class="keyword">catch</span> (Exception e) {
+                        flag = <span class="keyword">true</span>;
+                        <span class="keyword">continue</span>;
+                    }
+                    URL ttmp = <span class="keyword">new</span> URL(tmp);
+                    <span class="keyword">if</span>(!hm.containsKey(ttmp))
+                        q.<span class="built_in">add</span>(ttmp);
+                    <span class="comment">//System.out.println(tmp);</span>
+                }
+
+            }
+        }
+    }
+}
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/java/">java</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/07/23/20150723x/" title="java数组排序" itemprop="url">java数组排序</a>
   </h1>
   <p class="article-author">By
@@ -380,7 +494,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
+				<li><a href="/tags/java/" title="java">java<sup>2</sup></a></li>
 			
 		
 			

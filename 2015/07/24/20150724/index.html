@@ -4,38 +4,47 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>java简易爬虫 | xsj4cs blog</title>
+    <title>java爬虫稍修改 | xsj4cs blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="xsj4cs">
     
 
     
-    <meta name="description" content="大致思路：
-1.连接URL。2.从连接处建立读入流。3.决定正则表达式4.对正则表达式编译封装成Pattern。5.建立Matcher机。6.find一下，group一下。接下来的思路，一般是把网页中的URL存储到queue中，从队列中取出，再次爬虫（宽搜）。
-import java.net.*;
+    <meta name="description" content="import java.net.*;
 import java.io.*;
 import java.util.regex.*;
-public">
+import java.util.*;
+//import java.util.Queue;
+//import java.util.LinkedList;
+
+public class Spider {
+    public static void main(String ar">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java简易爬虫">
-<meta property="og:url" content="http://yoursite.com/2015/07/23/20150723/index.html">
+<meta property="og:title" content="java爬虫稍修改">
+<meta property="og:url" content="http://yoursite.com/2015/07/24/20150724/index.html">
 <meta property="og:site_name" content="xsj4cs blog">
-<meta property="og:description" content="大致思路：
-1.连接URL。2.从连接处建立读入流。3.决定正则表达式4.对正则表达式编译封装成Pattern。5.建立Matcher机。6.find一下，group一下。接下来的思路，一般是把网页中的URL存储到queue中，从队列中取出，再次爬虫（宽搜）。
-import java.net.*;
+<meta property="og:description" content="import java.net.*;
 import java.io.*;
 import java.util.regex.*;
-public">
-<meta property="og:updated_time" content="2015-07-23T06:48:25.389Z">
+import java.util.*;
+//import java.util.Queue;
+//import java.util.LinkedList;
+
+public class Spider {
+    public static void main(String ar">
+<meta property="og:updated_time" content="2015-07-24T07:22:14.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java简易爬虫">
-<meta name="twitter:description" content="大致思路：
-1.连接URL。2.从连接处建立读入流。3.决定正则表达式4.对正则表达式编译封装成Pattern。5.建立Matcher机。6.find一下，group一下。接下来的思路，一般是把网页中的URL存储到queue中，从队列中取出，再次爬虫（宽搜）。
-import java.net.*;
+<meta name="twitter:title" content="java爬虫稍修改">
+<meta name="twitter:description" content="import java.net.*;
 import java.io.*;
 import java.util.regex.*;
-public">
+import java.util.*;
+//import java.util.Queue;
+//import java.util.LinkedList;
+
+public class Spider {
+    public static void main(String ar">
 
     
     <link rel="alternative" href="/atom.xml" title="xsj4cs blog" type="application/atom+xml">
@@ -95,14 +104,14 @@ public">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/07/23/20150723/" title="java简易爬虫" itemprop="url">java简易爬虫</a>
+      <a href="/2015/07/24/20150724/" title="java爬虫稍修改" itemprop="url">java爬虫稍修改</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="xsj4cs" target="_blank" itemprop="author">xsj4cs</a>
 		
   <p class="article-time">
-    <time datetime="2015-07-23T06:35:34.000Z" itemprop="datePublished"> 发表于 2015-07-23</time>
+    <time datetime="2015-07-24T07:19:24.000Z" itemprop="datePublished"> 发表于 2015-07-24</time>
     
   </p>
 </header>
@@ -115,26 +124,62 @@ public">
 		
 		</div>
 		
-		<p>大致思路：</p>
-<p>1.连接URL。<br>2.从连接处建立读入流。<br>3.决定正则表达式<br>4.对正则表达式编译封装成Pattern。<br>5.建立Matcher机。<br>6.find一下，group一下。<br>接下来的思路，一般是把网页中的URL存储到queue中，从队列中取出，再次爬虫（宽搜）。</p>
-<pre><code><span class="keyword">import</span> java.net.*;
+		<pre><code><span class="keyword">import</span> java.net.*;
 <span class="keyword">import</span> java.io.*;
 <span class="keyword">import</span> java.util.regex.*;
+<span class="keyword">import</span> java.util.*;
+<span class="comment">//import java.util.Queue;</span>
+<span class="comment">//import java.util.LinkedList;</span>
+
 <span class="keyword">public</span> class Spider {
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span> args[]) <span class="keyword">throws</span> Exception{
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span> args[]) <span class="keyword">throws</span> Exception {
         getMail();
     }
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> getMail() <span class="keyword">throws</span> Exception{
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> getMail() <span class="keyword">throws</span> Exception {
         URL url = <span class="keyword">new</span> URL(<span class="string">"http://tieba.baidu.com/p/3856188322"</span>);
-        URLConnection con = url.openConnection();
-        <span class="keyword">BufferedReader</span> bufin = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(con.getInputStream()));
-        <span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;
-        <span class="keyword">String</span> mailreg = <span class="string">"\\w+@\\w+[\\.\\w+]+"</span>;
-        Pattern p = Pattern.compile(mailreg);
-        <span class="keyword">while</span>( (<span class="built_in">line</span> = bufin.readLine()) != <span class="keyword">null</span>) {
-            Matcher m = p.matcher(<span class="built_in">line</span>);
-            <span class="keyword">while</span>(m.find()){
-                System.out.<span class="built_in">println</span>(m.group());
+        Queue&lt;URL&gt; q = <span class="keyword">new</span> LinkedList&lt;URL&gt;();
+        <span class="keyword">HashMap</span> hm = <span class="keyword">new</span> <span class="keyword">HashMap</span>();
+        hm.put(url, <span class="number">1</span>);
+        q.<span class="built_in">add</span>(url);
+        <span class="keyword">while</span> ((url = q.poll()) != <span class="keyword">null</span>) {
+            <span class="keyword">try</span> {
+                URLConnection con = url.openConnection();
+                <span class="keyword">BufferedReader</span> bufin = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(
+                        <span class="keyword">new</span> InputStreamReader(con.getInputStream()));
+            } <span class="keyword">catch</span> (Exception e) {
+                <span class="keyword">continue</span>;
+            }
+            URLConnection con = url.openConnection();
+            <span class="keyword">BufferedReader</span> bufin = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(
+                    con.getInputStream()));
+            <span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;
+            <span class="keyword">String</span> mailreg = <span class="string">"\\w+@\\w+[\\.\\w+]+"</span>;
+            <span class="keyword">String</span> urlreg = <span class="string">"http.*?\""</span>;
+            Pattern p = Pattern.compile(mailreg);
+            Pattern purl = Pattern.compile(urlreg);
+            <span class="keyword">while</span> ((<span class="built_in">line</span> = bufin.readLine()) != <span class="keyword">null</span>) {
+                Matcher m = p.matcher(<span class="built_in">line</span>);
+                Matcher murl = purl.matcher(<span class="built_in">line</span>);
+                <span class="keyword">while</span> (m.find()) {
+                    System.out.<span class="built_in">println</span>(m.group());
+                }
+                <span class="keyword">while</span> (murl.find()) {
+                    <span class="keyword">String</span> tmp = murl.group().toString();
+                    tmp = tmp.replaceAll(<span class="string">"\""</span>, <span class="string">""</span>);
+                    <span class="built_in">boolean</span> flag = <span class="keyword">false</span>;
+                    <span class="keyword">try</span> {
+                        URL ttmp = <span class="keyword">new</span> URL(tmp);
+                    } <span class="keyword">catch</span> (Exception e) {
+                        flag = <span class="keyword">true</span>;
+                        <span class="keyword">continue</span>;
+                    }
+                    URL ttmp = <span class="keyword">new</span> URL(tmp);
+                    <span class="keyword">if</span>(!hm.containsKey(ttmp))
+                        q.<span class="built_in">add</span>(ttmp);
+                    <span class="comment">//System.out.println(tmp);</span>
+                }
+
             }
         }
     }
@@ -156,7 +201,7 @@ public">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/07/23/20150723/" data-title="java简易爬虫 | xsj4cs blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/07/24/20150724/" data-title="java爬虫稍修改 | xsj4cs blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -169,19 +214,11 @@ public">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/07/23/20150723x/" title="java数组排序">
-  <strong>上一篇：</strong><br/>
-  <span>
-  java数组排序</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/07/22/hello-world/"  title="Hello World">
+<a href="/2015/07/23/20150723x/"  title="java数组排序">
  <strong>下一篇：</strong><br/> 
- <span>Hello World
+ <span>java数组排序
 </span>
 </a>
 </div>
