@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 涂田涨村技术孵化基地
 subtitle:
-description:
-author: John Doe
-language:
+description: Just Fly~~
+author: xsj4cs
+language: zh-Hans
 timezone:
 
 # URL
@@ -63,9 +63,16 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape
+theme: iissnan
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repository: git@github.com:xsj4cs/xsj4cs.github.io.git
+  branch: master
+# title
+links_title: 巨巨们
+# links
+links:
+    Chris巨巨: http://www.cnblogs.com/zjutzz
