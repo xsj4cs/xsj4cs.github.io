@@ -199,4 +199,5 @@ git checkout hexo
 ```
 还有一些常用的命令
 ``` bash
-git remote origin 
+git remote origin
+```
