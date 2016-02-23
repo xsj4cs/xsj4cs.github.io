@@ -189,15 +189,95 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/23/nerual-network/" itemprop="url">
+                  nerual_network简单介绍
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-23T19:42:47+08:00" content="2016-02-23">
+              2016-02-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        
-        
-        
       
 
       
-    
+        
+          
+            <h2 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h2><p>首先说一下感知机，感知机长怎么样<br>如图：<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602231.png" alt="201602231"><br>左边三个是输入，然后这三个输入分别乘以自己相对应的系数wi，然后相加，如果值大于某个自己设定的阈值，那么输出1，小于则输出0。</p>
+<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>神经网络其实和感知机差不多，只不过一般是好几层，而且一般输出也不是0或1，而是一个实数，而且为了能够更加精确，且能使用梯度下降（什么是梯度下降等下讲），一般对于输入的数据与对应系数wi相乘后，相加，然后减去对应阈值（这里变为+b，好看）后得到的值经过过一个可微的激发函数，常用sigmoid函数f(x)=(1-e^-x)/(1+e^-x)。看下图的神经网络图：<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602232.png" alt="201602232"><br>输入层，输入数据经过中间的隐层，输出到最后的输出层，中间的隐藏和输出层，都和上面的感知机一样，对于所有输入乘以对应的系数，然后相加，加上阈值b，带入激发函数，把结果作为下层的输入。和其他机器学习算法，如svn，贝叶斯一样，其实就是要求解wi，使得输出更加准确，误差就是e=Σ(xim - yi)^2,最后一次与实际结果的平方差。</p>
+<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><p>再说怎么解神经网络的系数前，先说一下什么是梯度下降算法。梯度算法，其实就是为了使得误差e变得更小，那么就要对误差e对各系数求偏导，这样这些值就组成了梯度（高等数学中应该是有这个概念的，倒三角），也就是可以认为是一个方向，然后系数往这个方向移动某段很小的距离将逼近极小值，那么就设定一个步长η，那么不对迭代，可以使得e达到接近极小值，那么也就是我们要的wi系数。</p>
+<h2 id="bp算法"><a href="#bp算法" class="headerlink" title="bp算法"></a>bp算法</h2><p>说完了梯度下降，那么我们说一下如何解神经网络的系数，这里介绍一种经典的方法，bp算法，其实很简单，就是从输出层，往前不断的做梯度下降，然后在根据这些新得到的系数，求得新的误差e，然后继续往前，这样不断迭代即可。</p>
+<h2 id="梯度下降和bp的推导"><a href="#梯度下降和bp的推导" class="headerlink" title="梯度下降和bp的推导"></a>梯度下降和bp的推导</h2><p><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602233.png" alt="201602233"><br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602234.png" alt="201602234"><br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602235.png" alt="201602235"><br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602236.png" alt="201602236"></p>
+<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><p>以简单的例子来说明：<br>我们需要一个算法来识别手写的数字，那么如何识别呢？<br>首先，要有输入，输入是什么，这里我们把图片的每一个像素点作为输入（假设只有黑白)，那么黑的为1，白的为0。这样就行了</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -326,6 +406,174 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/23/javasort/" itemprop="url">
+                  java数组排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-23T14:38:21+08:00" content="2016-02-23">
+              2016-02-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="定义数组可以这样，比如int-a-new-int-10"><a href="#定义数组可以这样，比如int-a-new-int-10" class="headerlink" title="定义数组可以这样，比如int a[] = new int[10];"></a>定义数组可以这样，比如int a[] = new int[10];</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> size;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">        size = s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DogSizeComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Dog</span>&gt;</span>&#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Dog o1, Dog o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o1.size - o2.size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;    </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Dog d1 = <span class="keyword">new</span> Dog(<span class="number">2</span>);</span><br><span class="line">        Dog d2 = <span class="keyword">new</span> Dog(<span class="number">1</span>);</span><br><span class="line">        Dog d3 = <span class="keyword">new</span> Dog(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        Dog[] dogArray = &#123;d1, d2, d3&#125;;</span><br><span class="line">        printDogs(dogArray);</span><br><span class="line"></span><br><span class="line">        Arrays.sort(dogArray, <span class="keyword">new</span> DogSizeComparator());    </span><br><span class="line">        printDogs(dogArray);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDogs</span><span class="params">(Dog[] dogs)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(Dog d: dogs)</span><br><span class="line">            System.out.print(d.size + <span class="string">" "</span> );</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/23/javaspider/" itemprop="url">
+                  java爬虫
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-23T14:38:13+08:00" content="2016-02-23">
+              2016-02-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="comment">//import java.util.Queue;</span></span><br><span class="line"><span class="comment">//import java.util.LinkedList;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Spider</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        getMail();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getMail</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        URL url = <span class="keyword">new</span> URL(<span class="string">"http://tieba.baidu.com/p/3856188322"</span>);</span><br><span class="line">        Queue&lt;URL&gt; q = <span class="keyword">new</span> LinkedList&lt;URL&gt;();</span><br><span class="line">        HashMap hm = <span class="keyword">new</span> HashMap();</span><br><span class="line">        hm.put(url, <span class="number">1</span>);</span><br><span class="line">        q.add(url);</span><br><span class="line">        <span class="keyword">while</span> ((url = q.poll()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                URLConnection con = url.openConnection();</span><br><span class="line">                BufferedReader bufin = <span class="keyword">new</span> BufferedReader(</span><br><span class="line">                        <span class="keyword">new</span> InputStreamReader(con.getInputStream()));</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            URLConnection con = url.openConnection();</span><br><span class="line">            BufferedReader bufin = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(</span><br><span class="line">                    con.getInputStream()));</span><br><span class="line">            String line = <span class="keyword">null</span>;</span><br><span class="line">            String mailreg = <span class="string">"\\w+@\\w+[\\.\\w+]+"</span>;</span><br><span class="line">            String urlreg = <span class="string">"http.*?\""</span>;</span><br><span class="line">            Pattern p = Pattern.compile(mailreg);</span><br><span class="line">            Pattern purl = Pattern.compile(urlreg);</span><br><span class="line">            <span class="keyword">while</span> ((line = bufin.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                Matcher m = p.matcher(line);</span><br><span class="line">                Matcher murl = purl.matcher(line);</span><br><span class="line">                <span class="keyword">while</span> (m.find()) &#123;</span><br><span class="line">                    System.out.println(m.group());</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">while</span> (murl.find()) &#123;</span><br><span class="line">                    String tmp = murl.group().toString();</span><br><span class="line">                    tmp = tmp.replaceAll(<span class="string">"\""</span>, <span class="string">""</span>);</span><br><span class="line">                    <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        URL ttmp = <span class="keyword">new</span> URL(tmp);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        flag = <span class="keyword">true</span>;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    URL ttmp = <span class="keyword">new</span> URL(tmp);</span><br><span class="line">                    <span class="keyword">if</span>(!hm.containsKey(ttmp))</span><br><span class="line">                        q.add(ttmp);</span><br><span class="line">                    <span class="comment">//System.out.println(tmp);</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
@@ -368,7 +616,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -378,7 +626,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
