@@ -57,25 +57,21 @@
 
 
 
-<meta name="description" content="感知机首先说一下感知机，感知机长怎么样如图：左边三个是输入，然后这三个输入分别乘以自己相对应的系数wi，然后相加，如果值大于某个自己设定的阈值，那么输出1，小于则输出0。
-神经网络神经网络其实和感知机差不多，只不过一般是好几层，而且一般输出也不是0或1，而是一个实数，而且为了能够更加精确，且能使用梯度下降（什么是梯度下降等下讲），一般对于输入的数据与对应系数wi相乘后，相加，然后减去对应阈值（这里">
+<meta name="description" content="本篇文章是对http://neuralnetworksanddeeplearning.com/chap6.html的翻译。
+正文在上一章，我们了解了深层神经网络比浅层神经网络更加难以训练，但是我们有理由相信，一旦我们训练出来了深度神经网络，它会比浅层神经网络更屌，虽然上一章的消息是令人沮丧的，但是我们不能因为它而停止脚步。在这章，我们会讲一种技术去训练深度神经网络，并将该技术用于实践。对于应用深度">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nerual_network简单介绍">
-<meta property="og:url" content="http://yoursite.com/2016/02/23/nerual-network/index.html">
+<meta property="og:title" content="neuralnetworksanddeeplearning第六章翻译（1）">
+<meta property="og:url" content="http://yoursite.com/2016/02/24/deeplearningtr/index.html">
 <meta property="og:site_name" content="涂田涨村技术孵化基地">
-<meta property="og:description" content="感知机首先说一下感知机，感知机长怎么样如图：左边三个是输入，然后这三个输入分别乘以自己相对应的系数wi，然后相加，如果值大于某个自己设定的阈值，那么输出1，小于则输出0。
-神经网络神经网络其实和感知机差不多，只不过一般是好几层，而且一般输出也不是0或1，而是一个实数，而且为了能够更加精确，且能使用梯度下降（什么是梯度下降等下讲），一般对于输入的数据与对应系数wi相乘后，相加，然后减去对应阈值（这里">
-<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602231.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602232.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602233.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602234.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602235.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602236.png">
-<meta property="og:updated_time" content="2016-02-24T12:10:46.391Z">
+<meta property="og:description" content="本篇文章是对http://neuralnetworksanddeeplearning.com/chap6.html的翻译。
+正文在上一章，我们了解了深层神经网络比浅层神经网络更加难以训练，但是我们有理由相信，一旦我们训练出来了深度神经网络，它会比浅层神经网络更屌，虽然上一章的消息是令人沮丧的，但是我们不能因为它而停止脚步。在这章，我们会讲一种技术去训练深度神经网络，并将该技术用于实践。对于应用深度">
+<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602241.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602242.png">
+<meta property="og:updated_time" content="2016-02-24T12:53:20.563Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nerual_network简单介绍">
-<meta name="twitter:description" content="感知机首先说一下感知机，感知机长怎么样如图：左边三个是输入，然后这三个输入分别乘以自己相对应的系数wi，然后相加，如果值大于某个自己设定的阈值，那么输出1，小于则输出0。
-神经网络神经网络其实和感知机差不多，只不过一般是好几层，而且一般输出也不是0或1，而是一个实数，而且为了能够更加精确，且能使用梯度下降（什么是梯度下降等下讲），一般对于输入的数据与对应系数wi相乘后，相加，然后减去对应阈值（这里">
+<meta name="twitter:title" content="neuralnetworksanddeeplearning第六章翻译（1）">
+<meta name="twitter:description" content="本篇文章是对http://neuralnetworksanddeeplearning.com/chap6.html的翻译。
+正文在上一章，我们了解了深层神经网络比浅层神经网络更加难以训练，但是我们有理由相信，一旦我们训练出来了深度神经网络，它会比浅层神经网络更屌，虽然上一章的消息是令人沮丧的，但是我们不能因为它而停止脚步。在这章，我们会讲一种技术去训练深度神经网络，并将该技术用于实践。对于应用深度">
 
 
 
@@ -93,7 +89,7 @@
   };
 </script>
 
-  <title> nerual_network简单介绍 | 涂田涨村技术孵化基地 </title>
+  <title> neuralnetworksanddeeplearning第六章翻译（1） | 涂田涨村技术孵化基地 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -213,7 +209,7 @@
             
             
               
-                nerual_network简单介绍
+                neuralnetworksanddeeplearning第六章翻译（1）
               
             
           </h1>
@@ -225,8 +221,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-23T19:42:47+08:00" content="2016-02-23">
-              2016-02-23
+            <time itemprop="dateCreated" datetime="2016-02-24T17:57:57+08:00" content="2016-02-24">
+              2016-02-24
             </time>
           </span>
 
@@ -251,12 +247,12 @@
       
 
       
-        <h2 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h2><p>首先说一下感知机，感知机长怎么样<br>如图：<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602231.png" alt="201602231"><br>左边三个是输入，然后这三个输入分别乘以自己相对应的系数wi，然后相加，如果值大于某个自己设定的阈值，那么输出1，小于则输出0。</p>
-<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>神经网络其实和感知机差不多，只不过一般是好几层，而且一般输出也不是0或1，而是一个实数，而且为了能够更加精确，且能使用梯度下降（什么是梯度下降等下讲），一般对于输入的数据与对应系数wi相乘后，相加，然后减去对应阈值（这里变为+b，好看）后得到的值经过过一个可微的激发函数，常用sigmoid函数f(x)=(1-e^-x)/(1+e^-x)。看下图的神经网络图：<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602232.png" alt="201602232"><br>输入层，输入数据经过中间的隐层，输出到最后的输出层，中间的隐藏和输出层，都和上面的感知机一样，对于所有输入乘以对应的系数，然后相加，加上阈值b，带入激发函数，把结果作为下层的输入。和其他机器学习算法，如svn，贝叶斯一样，其实就是要求解wi，使得输出更加准确，误差就是e=Σ(xim - yi)^2,最后一次与实际结果的平方差。</p>
-<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><p>再说怎么解神经网络的系数前，先说一下什么是梯度下降算法。梯度算法，其实就是为了使得误差e变得更小，那么就要对误差e对各系数求偏导，这样这些值就组成了梯度（高等数学中应该是有这个概念的，倒三角），也就是可以认为是一个方向，然后系数往这个方向移动某段很小的距离将逼近极小值，那么就设定一个步长η，那么不对迭代，可以使得e达到接近极小值，那么也就是我们要的wi系数。</p>
-<h2 id="bp算法"><a href="#bp算法" class="headerlink" title="bp算法"></a>bp算法</h2><p>说完了梯度下降，那么我们说一下如何解神经网络的系数，这里介绍一种经典的方法，bp算法，其实很简单，就是从输出层，往前不断的做梯度下降，然后在根据这些新得到的系数，求得新的误差e，然后继续往前，这样不断迭代即可。</p>
-<h2 id="梯度下降和bp的推导"><a href="#梯度下降和bp的推导" class="headerlink" title="梯度下降和bp的推导"></a>梯度下降和bp的推导</h2><p><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602233.png" alt="201602233"><br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602234.png" alt="201602234"><br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602235.png" alt="201602235"><br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602236.png" alt="201602236"></p>
-<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><p>以简单的例子来说明：<br>我们需要一个算法来识别手写的数字，那么如何识别呢？<br>首先，要有输入，输入是什么，这里我们把图片的每一个像素点作为输入（假设只有黑白)，那么黑的为1，白的为0。这样就行了</p>
+        <p>本篇文章是对<a href="http://neuralnetworksanddeeplearning.com/chap6.html的翻译。" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/chap6.html的翻译。</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><pre><code>在上一章，我们了解了深层神经网络比浅层神经网络更加难以训练，但是我们有理由相信，一旦我们训练出来了深度神经网络，它会比浅层神经网络更屌，虽然上一章的消息是令人沮丧的，但是我们不能因为它而停止脚步。在这章，我们会讲一种技术去训练深度神经网络，并将该技术用于实践。对于应用深度网络进行图像识别，语音识别和一些其他的应用，我们会做一个简要的回顾。我们也会简要的说说神经网络、人工智能等的未来。
+这章会很长，为了帮助你学的更好，让我们就像旅游一样对待吧。本节是仅有的松散耦合的一部分，所以如果你比较熟悉神经网络的话，可以跳着看一些你感兴趣的。
+这章的这部分主要是来介绍一种广泛应用的深度神经网络：deep convoluntional networks(卷积深度神经网络)，我们通过详细的代码来解释这一部分，代码是用卷积神经网络来解决手写数字识别的问题，数据是MNIST data。
+</code></pre><p><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602241.png" alt="201602241"><br>我们从本书之前用来解决这个问题的浅层神经网络来开始我们的卷积神经网络。通过不断的迭代，我们将构建更屌的网络。随着我们的步伐，我们将探索许多强大的技术，比如：卷积，汇集（pooling），使用GPUs来使训练比训练浅层网络更加充分，算法性更强通过我们的训练数据（当然减少过拟合），对dropout技术的使用（也是用来减少过拟合），对整个网络的使用等等。这样就能形成一个系统，表现出近似人才有的行为。对10000个MNIST测试图片（图片在训练过程中不可见），我们的系统可以正确分类9967个，这里我们挑出了被错误分类的33个图片。图片中正确分类在右上，系统给出的分类在右下：<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602242.png" alt="201602242"><br>图片中许多例子即使是人类区分也是很容易分错的。举个例子，最上面那排的第3个图片，对我来说，看起来更像是9和不是8，这是人为的一个分类。我们的系统也人为他是一个9，我想这种错误至少是可以理解的吧，也许甚至应该值得表扬。我得出这个讨论结果是最近重大的一个调查表明，用神经网络（特别是卷积神经网络）来做图像识别是很好的。<br>    本章剩下的是讨论从一个广阔且少细节的东西中进行深度学习的穿透力。我们会简要说下像循环神经网络（RNN），LSTM（一种时间递归神经网络）等这些的神经网络模型的调查结果和是怎么把这些模型应用到诸如语音识别，自然语言处理等其他发面。而且我们将思考神经网络和机器学习的未来，像什么人们意图驱动的用户界面，神经网络在人工智能方面扮演的角色。<br>    本章放在后面几章之前，是为了整理和知道，像bp，正则化，softmax功能等等。但是，通过前面的一些章节的学习，相信看这章是不需要费很大劲的。如果费劲的话，请看章节一，神经网络的基础。如果我使用2-5章节中的概念，我会提供链接让你能在过去复习，如果有必要的话。<br>    不管这是否值得一提。这不是最新也不是最伟大的神经网络教程。我们也不会训练深层网络去解决非常前沿的问题。相反，我们的重点为了去理解深层神经网络背后的一些核心原则，并做一些简单的，容易理解的MNIST问题。用另外一种话说，本章不会带你去领略前沿的风采，而只是把目的基于基础面，所以我们要让你理解本书的作用范围。<br>    本书目前还在测试阶段，我们欢迎通知错别字等错误。请在线回复mn@michaelnielsen.org。</p>
+<h1 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h1><p>额，感觉这章没有什么翻译的必要。。。</p>
 
       
     </div>
@@ -274,17 +270,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/23/hexo/" rel="next" title="hexo搭建">
-                <i class="fa fa-chevron-left"></i> hexo搭建
+              <a href="/2016/02/23/nerual-network/" rel="next" title="nerual_network简单介绍">
+                <i class="fa fa-chevron-left"></i> nerual_network简单介绍
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/02/24/deeplearningtr/" rel="prev" title="neuralnetworksanddeeplearning第六章翻译（1）">
-                neuralnetworksanddeeplearning第六章翻译（1） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -402,7 +394,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#感知机"><span class="nav-number">1.</span> <span class="nav-text">感知机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络"><span class="nav-number">2.</span> <span class="nav-text">神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降算法"><span class="nav-number">3.</span> <span class="nav-text">梯度下降算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bp算法"><span class="nav-number">4.</span> <span class="nav-text">bp算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降和bp的推导"><span class="nav-number">5.</span> <span class="nav-text">梯度下降和bp的推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么用"><span class="nav-number">6.</span> <span class="nav-text">怎么用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">1.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#吐槽"><span class="nav-number">2.</span> <span class="nav-text">吐槽</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

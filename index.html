@@ -189,6 +189,15 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
 
     
       
@@ -212,8 +221,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/02/23/nerual-network/" itemprop="url">
-                  nerual_network简单介绍
+                <a class="post-title-link" href="/2016/02/24/deeplearningtr/" itemprop="url">
+                  neuralnetworksanddeeplearning第六章翻译（1）
                 </a>
               
             
@@ -226,8 +235,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-23T19:42:47+08:00" content="2016-02-23">
-              2016-02-23
+            <time itemprop="dateCreated" datetime="2016-02-24T17:57:57+08:00" content="2016-02-24">
+              2016-02-24
             </time>
           </span>
 
@@ -254,306 +263,12 @@
       
         
           
-            <h2 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h2><p>首先说一下感知机，感知机长怎么样<br>如图：<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602231.png" alt="201602231"><br>左边三个是输入，然后这三个输入分别乘以自己相对应的系数wi，然后相加，如果值大于某个自己设定的阈值，那么输出1，小于则输出0。</p>
-<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>神经网络其实和感知机差不多，只不过一般是好几层，而且一般输出也不是0或1，而是一个实数，而且为了能够更加精确，且能使用梯度下降（什么是梯度下降等下讲），一般对于输入的数据与对应系数wi相乘后，相加，然后减去对应阈值（这里变为+b，好看）后得到的值经过过一个可微的激发函数，常用sigmoid函数f(x)=(1-e^-x)/(1+e^-x)。看下图的神经网络图：<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602232.png" alt="201602232"><br>输入层，输入数据经过中间的隐层，输出到最后的输出层，中间的隐藏和输出层，都和上面的感知机一样，对于所有输入乘以对应的系数，然后相加，加上阈值b，带入激发函数，把结果作为下层的输入。和其他机器学习算法，如svn，贝叶斯一样，其实就是要求解wi，使得输出更加准确，误差就是e=Σ(xim - yi)^2,最后一次与实际结果的平方差。</p>
-<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><p>再说怎么解神经网络的系数前，先说一下什么是梯度下降算法。梯度算法，其实就是为了使得误差e变得更小，那么就要对误差e对各系数求偏导，这样这些值就组成了梯度（高等数学中应该是有这个概念的，倒三角），也就是可以认为是一个方向，然后系数往这个方向移动某段很小的距离将逼近极小值，那么就设定一个步长η，那么不对迭代，可以使得e达到接近极小值，那么也就是我们要的wi系数。</p>
-<h2 id="bp算法"><a href="#bp算法" class="headerlink" title="bp算法"></a>bp算法</h2><p>说完了梯度下降，那么我们说一下如何解神经网络的系数，这里介绍一种经典的方法，bp算法，其实很简单，就是从输出层，往前不断的做梯度下降，然后在根据这些新得到的系数，求得新的误差e，然后继续往前，这样不断迭代即可。</p>
-<h2 id="梯度下降和bp的推导"><a href="#梯度下降和bp的推导" class="headerlink" title="梯度下降和bp的推导"></a>梯度下降和bp的推导</h2><p><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602233.png" alt="201602233"><br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602234.png" alt="201602234"><br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602235.png" alt="201602235"><br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602236.png" alt="201602236"></p>
-<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><p>以简单的例子来说明：<br>我们需要一个算法来识别手写的数字，那么如何识别呢？<br>首先，要有输入，输入是什么，这里我们把图片的每一个像素点作为输入（假设只有黑白)，那么黑的为1，白的为0。这样就行了</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/23/hexo/" itemprop="url">
-                  hexo搭建
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-23T19:20:42+08:00" content="2016-02-23">
-              2016-02-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h1><h2 id="1-1-安装git"><a href="#1-1-安装git" class="headerlink" title="1.1 安装git"></a>1.1 安装git</h2><h2 id="1-2-安装node-js"><a href="#1-2-安装node-js" class="headerlink" title="1.2 安装node.js"></a>1.2 安装node.js</h2><h2 id="1-3-安装hexo-并启动"><a href="#1-3-安装hexo-并启动" class="headerlink" title="1.3 安装hexo,并启动"></a>1.3 安装hexo,并启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br><span class="line">mkdir xxx</span><br><span class="line">hexo init xxx</span><br><span class="line"><span class="built_in">cd</span> xxx</span><br><span class="line">npm install</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>访问localhost:4000</p>
-<h1 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h1><h2 id="2-1选个主题"><a href="#2-1选个主题" class="headerlink" title="2.1选个主题"></a>2.1选个主题</h2><p>原来主题太难看，用个next主题吧，地址：<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a><br>下载后解压到themes文件夹中，<br>然后站配置文件中，themes后面写上对应的名字</p>
-<h2 id="2-1主题配置"><a href="#2-1主题配置" class="headerlink" title="2.1主题配置"></a>2.1主题配置</h2><h3 id="2-1-1语言："><a href="#2-1-1语言：" class="headerlink" title="2.1.1语言："></a>2.1.1语言：</h3><p>编辑 站点配置文件 的 _config.yml ，将 language 字段更改为你所需要的语言版本代号：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">language: en</span><br><span class="line"><span class="comment"># language: zh-Hans</span></span><br><span class="line"><span class="comment"># language: fr-FR</span></span><br><span class="line"><span class="comment"># language: zh-hk</span></span><br><span class="line"><span class="comment"># language: zh-tw</span></span><br><span class="line"><span class="comment"># language: ru</span></span><br><span class="line"><span class="comment"># language: de</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2-1-2标签："><a href="#2-1-2标签：" class="headerlink" title="2.1.2标签："></a>2.1.2标签：</h3><p>新建一个页面，命名为 tags 。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page <span class="string">"tags"</span></span><br></pre></td></tr></table></figure></p>
-<p>编辑刚新建的页面，将页面的类型设置为 tags ，主题将自动为这个页面显示标签云。页面内容如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: Tagcloud</span><br><span class="line">date: <span class="number">2014</span>-<span class="number">12</span>-<span class="number">22</span> <span class="number">12</span>:<span class="number">39</span>:<span class="number">04</span></span><br><span class="line"><span class="built_in">type</span>: <span class="string">"tags"</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
-<p>注意：如果有启用多说 或者 Disqus 评论，默认页面也会带有评论。需要关闭的话，请添加字段 comments 并将值设置为 false，如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: Tagcloud</span><br><span class="line">date: <span class="number">2014</span>-<span class="number">12</span>-<span class="number">22</span> <span class="number">12</span>:<span class="number">39</span>:<span class="number">04</span></span><br><span class="line"><span class="built_in">type</span>: <span class="string">"tags"</span></span><br><span class="line">comments: <span class="literal">false</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
-<p>在菜单中添加链接。编辑 主题配置文件 ，添加 tags 到 menu 中，如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: /</span><br><span class="line">  archives: /archives</span><br><span class="line">  tags: /tags</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-1-3分类"><a href="#2-1-3分类" class="headerlink" title="2.1.3分类"></a>2.1.3分类</h3><p>同标签一样</p>
-<h3 id="2-1-4代码高亮主题"><a href="#2-1-4代码高亮主题" class="headerlink" title="2.1.4代码高亮主题"></a>2.1.4代码高亮主题</h3><p>NexT 使用 Tomorrow Theme 作为代码高亮，共有5款主题供你选择。</p>
-<p>默认使用的是白色的 normal</p>
-<h3 id="2-1-5站点建立时间"><a href="#2-1-5站点建立时间" class="headerlink" title="2.1.5站点建立时间"></a>2.1.5站点建立时间</h3><p>这个时间将在站点的底部显示，例如 © 2013 - 2015</p>
-<p>编辑 站点配置文件，新增字段 since。</p>
-<p>since: 2013</p>
-<h3 id="2-1-5数学公式显示"><a href="#2-1-5数学公式显示" class="headerlink" title="2.1.5数学公式显示"></a>2.1.5数学公式显示</h3><p>NexT 借助于 MathJax 来显示数学公式，此选项默认关闭。</p>
-<p>编辑 主题配置文件，将 mathjax 设定为 true 即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MathJax Support</span></span><br><span class="line">mathjax:</span><br><span class="line">ProTip: 使用七牛 CDN 来加速 MathJax 脚本的加载</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-1-6侧边栏头像"><a href="#2-1-6侧边栏头像" class="headerlink" title="2.1.6侧边栏头像"></a>2.1.6侧边栏头像</h3><p>编辑 站点配置文件，新增字段 avatar， 值设置成头像的链接地址。</p>
-<p>其中，头像的链接地址可以是：</p>
-<p>完整的互联网 URL，例如：<a href="https://avatars1.githubusercontent.com/u/32269?v=3&amp;s=460" target="_blank" rel="external">https://avatars1.githubusercontent.com/u/32269?v=3&amp;s=460</a><br>站点内的地址，例如：</p>
-<p>/uploads/avatar.jpg 需要将你的头像图片放置在 站点的 source/uploads/（可能需要新建uploads目录）<br>/images/avatar.jpg 需要将你的头像图片放置在 主题的 source/images/ 目录下。</p>
-<h3 id="2-1-7侧边栏社交链接"><a href="#2-1-7侧边栏社交链接" class="headerlink" title="2.1.7侧边栏社交链接"></a>2.1.7侧边栏社交链接</h3><p>编辑 站点配置文件，新增字段 social，然后添加社交站点名称与地址即可。例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Social links</span></span><br><span class="line">social:</span><br><span class="line">  github: https://github.com/your-user-name</span><br><span class="line">  twitter: https://twitter.com/your-user-name</span><br><span class="line">  weibo: http://weibo.com/your-user-name</span><br><span class="line">  douban: http://douban.com/people/your-user-name</span><br><span class="line">  zhihu: http://www.zhihu.com/people/your-user-name</span><br><span class="line">  <span class="comment">#等等</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2-1-8About页面"><a href="#2-1-8About页面" class="headerlink" title="2.1.8About页面"></a>2.1.8About页面</h3><p>新建一个 about 页面：</p>
-<p>hexo new page “about”<br>菜单显示 about 链接，在 主题配置文件 设置中将 menu 中 about 前面的注释去掉即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: /</span><br><span class="line">  archives: /archives</span><br><span class="line">  tags: /tags</span><br><span class="line">  about: /about</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-1-9友情链接"><a href="#2-1-9友情链接" class="headerlink" title="2.1.9友情链接"></a>2.1.9友情链接</h3><p>编辑 站点配置文件 添加：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># title, chinese available</span></span><br><span class="line">links_title: Links</span><br><span class="line"><span class="comment"># links</span></span><br><span class="line">links:</span><br><span class="line">  MacTalk: http://macshuo.com/</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-1-10腾讯公益404页面"><a href="#2-1-10腾讯公益404页面" class="headerlink" title="2.1.10腾讯公益404页面"></a>2.1.10腾讯公益404页面</h3><p>简体中文增加腾讯公益404页面，寻找丢失儿童，让大家一起关注此项公益事业！效果如下 <a href="http://www.ixirong.com/404.html" target="_blank" rel="external">http://www.ixirong.com/404.html</a></p>
-<p>使用方法，新建 404.html 页面，放到主题的 source 目录下，内容如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE HTML&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"content-type"</span> <span class="attribute">content</span>=<span class="value">"text/html;charset=utf-8;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"X-UA-Compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=edge,chrome=1"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"robots"</span> <span class="attribute">content</span>=<span class="value">"all"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"robots"</span> <span class="attribute">content</span>=<span class="value">"index,follow"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://www.qq.com/404/search_children.js"</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span> <span class="attribute">homePageUrl</span>=<span class="value">"your site url "</span> <span class="attribute">homePageName</span>=<span class="value">"回到我的主页"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="3-远程连接"><a href="#3-远程连接" class="headerlink" title="3.远程连接"></a>3.远程连接</h1><h2 id="3-1-github上"><a href="#3-1-github上" class="headerlink" title="3.1 github上"></a>3.1 github上</h2><p>下面我们讲博客部署到github上面。</p>
-<p>注册Github帐号。</p>
-<p>已有就跳过。</p>
-<p>这里的就不用介绍了。</p>
-<p>创建repository</p>
-<p>登录github后，将鼠标点击github右上角“+”号，在下拉菜单上，选择“New repository”项，将跳到如下页面，填写库名称，勾选“Initialize this repository with a README”，点击“create repository”，即可完成创建库。</p>
-<p>由于你的本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以，需要一点设置：</p>
-<p>第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></span><br></pre></td></tr></table></figure></p>
-<p>你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。</p>
-<p>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
-<p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：</p>
-<p>然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：</p>
-<p>点“Add Key”，你就应该看到已经添加的Key</p>
-<p>部署到github上时修改_config.yml最后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line"><span class="built_in">type</span>: git </span><br><span class="line">repository: git@github.com:nichunquan/nichunquan.github.io.git </span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure></p>
-<p>deploy的type改成git，然后运行下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
-<p>##3.2恢复<br>因为发布上去的并不是源文件markdown什么，而是html之类的文件，所以一旦markdown文件不见了就不能继续更新了，现在我们要在创建一个分支用来存markdown文件，可以是hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch hexo</span><br><span class="line">git checkout hexo</span><br></pre></td></tr></table></figure></p>
-<p>恢复脚本如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br><span class="line">git remote add origin git@github.com:xsj4cs/xsj4cs.github.io.git</span><br><span class="line">git checkout hexo</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> some thing</span><br><span class="line">git add .</span><br><span class="line">git commit -m</span><br><span class="line">git push origin hexo</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/23/javasort/" itemprop="url">
-                  java数组排序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-23T14:38:21+08:00" content="2016-02-23">
-              2016-02-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="定义数组可以这样，比如int-a-new-int-10"><a href="#定义数组可以这样，比如int-a-new-int-10" class="headerlink" title="定义数组可以这样，比如int a[] = new int[10];"></a>定义数组可以这样，比如int a[] = new int[10];</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> size;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Dog</span><span class="params">(<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">        size = s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DogSizeComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Dog</span>&gt;</span>&#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Dog o1, Dog o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o1.size - o2.size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;    </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraySort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Dog d1 = <span class="keyword">new</span> Dog(<span class="number">2</span>);</span><br><span class="line">        Dog d2 = <span class="keyword">new</span> Dog(<span class="number">1</span>);</span><br><span class="line">        Dog d3 = <span class="keyword">new</span> Dog(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        Dog[] dogArray = &#123;d1, d2, d3&#125;;</span><br><span class="line">        printDogs(dogArray);</span><br><span class="line"></span><br><span class="line">        Arrays.sort(dogArray, <span class="keyword">new</span> DogSizeComparator());    </span><br><span class="line">        printDogs(dogArray);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDogs</span><span class="params">(Dog[] dogs)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(Dog d: dogs)</span><br><span class="line">            System.out.print(d.size + <span class="string">" "</span> );</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/23/javaspider/" itemprop="url">
-                  java爬虫
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-23T14:38:13+08:00" content="2016-02-23">
-              2016-02-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="comment">//import java.util.Queue;</span></span><br><span class="line"><span class="comment">//import java.util.LinkedList;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Spider</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        getMail();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getMail</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        URL url = <span class="keyword">new</span> URL(<span class="string">"http://tieba.baidu.com/p/3856188322"</span>);</span><br><span class="line">        Queue&lt;URL&gt; q = <span class="keyword">new</span> LinkedList&lt;URL&gt;();</span><br><span class="line">        HashMap hm = <span class="keyword">new</span> HashMap();</span><br><span class="line">        hm.put(url, <span class="number">1</span>);</span><br><span class="line">        q.add(url);</span><br><span class="line">        <span class="keyword">while</span> ((url = q.poll()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                URLConnection con = url.openConnection();</span><br><span class="line">                BufferedReader bufin = <span class="keyword">new</span> BufferedReader(</span><br><span class="line">                        <span class="keyword">new</span> InputStreamReader(con.getInputStream()));</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            URLConnection con = url.openConnection();</span><br><span class="line">            BufferedReader bufin = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(</span><br><span class="line">                    con.getInputStream()));</span><br><span class="line">            String line = <span class="keyword">null</span>;</span><br><span class="line">            String mailreg = <span class="string">"\\w+@\\w+[\\.\\w+]+"</span>;</span><br><span class="line">            String urlreg = <span class="string">"http.*?\""</span>;</span><br><span class="line">            Pattern p = Pattern.compile(mailreg);</span><br><span class="line">            Pattern purl = Pattern.compile(urlreg);</span><br><span class="line">            <span class="keyword">while</span> ((line = bufin.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                Matcher m = p.matcher(line);</span><br><span class="line">                Matcher murl = purl.matcher(line);</span><br><span class="line">                <span class="keyword">while</span> (m.find()) &#123;</span><br><span class="line">                    System.out.println(m.group());</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">while</span> (murl.find()) &#123;</span><br><span class="line">                    String tmp = murl.group().toString();</span><br><span class="line">                    tmp = tmp.replaceAll(<span class="string">"\""</span>, <span class="string">""</span>);</span><br><span class="line">                    <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        URL ttmp = <span class="keyword">new</span> URL(tmp);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        flag = <span class="keyword">true</span>;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    URL ttmp = <span class="keyword">new</span> URL(tmp);</span><br><span class="line">                    <span class="keyword">if</span>(!hm.containsKey(ttmp))</span><br><span class="line">                        q.add(ttmp);</span><br><span class="line">                    <span class="comment">//System.out.println(tmp);</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>本篇文章是对<a href="http://neuralnetworksanddeeplearning.com/chap6.html的翻译。" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/chap6.html的翻译。</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><pre><code>在上一章，我们了解了深层神经网络比浅层神经网络更加难以训练，但是我们有理由相信，一旦我们训练出来了深度神经网络，它会比浅层神经网络更屌，虽然上一章的消息是令人沮丧的，但是我们不能因为它而停止脚步。在这章，我们会讲一种技术去训练深度神经网络，并将该技术用于实践。对于应用深度网络进行图像识别，语音识别和一些其他的应用，我们会做一个简要的回顾。我们也会简要的说说神经网络、人工智能等的未来。
+这章会很长，为了帮助你学的更好，让我们就像旅游一样对待吧。本节是仅有的松散耦合的一部分，所以如果你比较熟悉神经网络的话，可以跳着看一些你感兴趣的。
+这章的这部分主要是来介绍一种广泛应用的深度神经网络：deep convoluntional networks(卷积深度神经网络)，我们通过详细的代码来解释这一部分，代码是用卷积神经网络来解决手写数字识别的问题，数据是MNIST data。
+</code></pre><p><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602241.png" alt="201602241"><br>我们从本书之前用来解决这个问题的浅层神经网络来开始我们的卷积神经网络。通过不断的迭代，我们将构建更屌的网络。随着我们的步伐，我们将探索许多强大的技术，比如：卷积，汇集（pooling），使用GPUs来使训练比训练浅层网络更加充分，算法性更强通过我们的训练数据（当然减少过拟合），对dropout技术的使用（也是用来减少过拟合），对整个网络的使用等等。这样就能形成一个系统，表现出近似人才有的行为。对10000个MNIST测试图片（图片在训练过程中不可见），我们的系统可以正确分类9967个，这里我们挑出了被错误分类的33个图片。图片中正确分类在右上，系统给出的分类在右下：<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602242.png" alt="201602242"><br>图片中许多例子即使是人类区分也是很容易分错的。举个例子，最上面那排的第3个图片，对我来说，看起来更像是9和不是8，这是人为的一个分类。我们的系统也人为他是一个9，我想这种错误至少是可以理解的吧，也许甚至应该值得表扬。我得出这个讨论结果是最近重大的一个调查表明，用神经网络（特别是卷积神经网络）来做图像识别是很好的。<br>    本章剩下的是讨论从一个广阔且少细节的东西中进行深度学习的穿透力。我们会简要说下像循环神经网络（RNN），LSTM（一种时间递归神经网络）等这些的神经网络模型的调查结果和是怎么把这些模型应用到诸如语音识别，自然语言处理等其他发面。而且我们将思考神经网络和机器学习的未来，像什么人们意图驱动的用户界面，神经网络在人工智能方面扮演的角色。<br>    本章放在后面几章之前，是为了整理和知道，像bp，正则化，softmax功能等等。但是，通过前面的一些章节的学习，相信看这章是不需要费很大劲的。如果费劲的话，请看章节一，神经网络的基础。如果我使用2-5章节中的概念，我会提供链接让你能在过去复习，如果有必要的话。<br>    不管这是否值得一提。这不是最新也不是最伟大的神经网络教程。我们也不会训练深层网络去解决非常前沿的问题。相反，我们的重点为了去理解深层神经网络背后的一些核心原则，并做一些简单的，容易理解的MNIST问题。用另外一种话说，本章不会带你去领略前沿的风采，而只是把目的基于基础面，所以我们要让你理解本书的作用范围。<br>    本书目前还在测试阶段，我们欢迎通知错别字等错误。请在线回复mn@michaelnielsen.org。</p>
+<h1 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h1><p>额，感觉这章没有什么翻译的必要。。。</p>
 
           
         
@@ -616,7 +331,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
