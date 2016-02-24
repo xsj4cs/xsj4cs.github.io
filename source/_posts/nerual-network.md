@@ -1,6 +1,6 @@
 title: nerual_network简单介绍
 date: 2016-02-23 19:42:47
-tags: "machine learing"
+tags: "machine learning"
 ---
 ## 感知机
 首先说一下感知机，感知机长怎么样
