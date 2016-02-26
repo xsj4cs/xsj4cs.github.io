@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="machine learning," />
+  <meta name="keywords" content="Just Fly~~" />
 
 
 
@@ -57,21 +57,30 @@
 
 
 
-<meta name="description" content="本篇文章是对http://neuralnetworksanddeeplearning.com/chap6.html的翻译。
-正文　　在上一章，我们了解了深层神经网络比浅层神经网络更加难以训练，但是我们有理由相信，一旦我们训练出来了深度神经网络，它会比浅层神经网络更屌，虽然上一章的消息是令人沮丧的，但是我们不能因为它而停止脚步。在这章，我们会讲一种技术去训练深度神经网络，并将该技术用于实践。对于应用">
+<meta name="description" content="朴素贝叶斯复习　　贝叶斯定理：P(A|B) = P(AB) / P(B)
+机器学习重要概念复习：方法 = 模型 + 策略 + 算法
+损失函数：度量预测错误的程度，有0-1损失函数，平方损失函数，对数损失函数，对数损失函数等。当然越小越好
+风险函数：就是损失函数的期望，也就是对所有情况下的损失函数的值乘以发生该情况的概率做积分。这个发生该情况的概率是不知道的，知道的话也没有训练的必要了。所以有了平均">
 <meta property="og:type" content="article">
-<meta property="og:title" content="neuralnetworksanddeeplearning第六章翻译（1）">
-<meta property="og:url" content="http://yoursite.com/2016/02/24/deeplearningtr/index.html">
+<meta property="og:title" content="机器学习学习与复习（持续更新）">
+<meta property="og:url" content="http://yoursite.com/2016/02/25/naive-bayes/index.html">
 <meta property="og:site_name" content="涂田涨村技术孵化基地">
-<meta property="og:description" content="本篇文章是对http://neuralnetworksanddeeplearning.com/chap6.html的翻译。
-正文　　在上一章，我们了解了深层神经网络比浅层神经网络更加难以训练，但是我们有理由相信，一旦我们训练出来了深度神经网络，它会比浅层神经网络更屌，虽然上一章的消息是令人沮丧的，但是我们不能因为它而停止脚步。在这章，我们会讲一种技术去训练深度神经网络，并将该技术用于实践。对于应用">
-<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602241.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602242.png">
-<meta property="og:updated_time" content="2016-02-24T13:10:46.684Z">
+<meta property="og:description" content="朴素贝叶斯复习　　贝叶斯定理：P(A|B) = P(AB) / P(B)
+机器学习重要概念复习：方法 = 模型 + 策略 + 算法
+损失函数：度量预测错误的程度，有0-1损失函数，平方损失函数，对数损失函数，对数损失函数等。当然越小越好
+风险函数：就是损失函数的期望，也就是对所有情况下的损失函数的值乘以发生该情况的概率做积分。这个发生该情况的概率是不知道的，知道的话也没有训练的必要了。所以有了平均">
+<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602262.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602263.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602264.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602265.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602266.png">
+<meta property="og:updated_time" content="2016-02-26T04:11:08.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="neuralnetworksanddeeplearning第六章翻译（1）">
-<meta name="twitter:description" content="本篇文章是对http://neuralnetworksanddeeplearning.com/chap6.html的翻译。
-正文　　在上一章，我们了解了深层神经网络比浅层神经网络更加难以训练，但是我们有理由相信，一旦我们训练出来了深度神经网络，它会比浅层神经网络更屌，虽然上一章的消息是令人沮丧的，但是我们不能因为它而停止脚步。在这章，我们会讲一种技术去训练深度神经网络，并将该技术用于实践。对于应用">
+<meta name="twitter:title" content="机器学习学习与复习（持续更新）">
+<meta name="twitter:description" content="朴素贝叶斯复习　　贝叶斯定理：P(A|B) = P(AB) / P(B)
+机器学习重要概念复习：方法 = 模型 + 策略 + 算法
+损失函数：度量预测错误的程度，有0-1损失函数，平方损失函数，对数损失函数，对数损失函数等。当然越小越好
+风险函数：就是损失函数的期望，也就是对所有情况下的损失函数的值乘以发生该情况的概率做积分。这个发生该情况的概率是不知道的，知道的话也没有训练的必要了。所以有了平均">
 
 
 
@@ -89,7 +98,7 @@
   };
 </script>
 
-  <title> neuralnetworksanddeeplearning第六章翻译（1） | 涂田涨村技术孵化基地 </title>
+  <title> 机器学习学习与复习（持续更新） | 涂田涨村技术孵化基地 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -209,7 +218,7 @@
             
             
               
-                neuralnetworksanddeeplearning第六章翻译（1）
+                机器学习学习与复习（持续更新）
               
             
           </h1>
@@ -221,8 +230,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-24T17:57:57+08:00" content="2016-02-24">
-              2016-02-24
+            <time itemprop="dateCreated" datetime="2016-02-25T11:31:27+08:00" content="2016-02-25">
+              2016-02-25
             </time>
           </span>
 
@@ -247,40 +256,32 @@
       
 
       
-        <p>本篇文章是对<a href="http://neuralnetworksanddeeplearning.com/chap6.html的翻译。" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/chap6.html的翻译。</a></p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><em>　　在上一章，我们了解了深层神经网络比浅层神经网络更加难以训练，但是我们有理由相信，一旦我们训练出来了深度神经网络，它会比浅层神经网络更屌，虽然上一章的消息是令人沮丧的，但是我们不能因为它而停止脚步。在这章，我们会讲一种技术去训练深度神经网络，并将该技术用于实践。对于应用深度网络进行图像识别，语音识别和一些其他的应用，我们会做一个简要的回顾。我们也会简要的说说神经网络、人工智能等的未来。
-</em>　　这章会很长，为了帮助你学的更好，让我们就像旅游一样对待吧。本节是仅有的松散耦合的一部分，所以如果你比较熟悉神经网络的话，可以跳着看一些你感兴趣的。<br><em>　　这章的这部分主要是来介绍一种广泛应用的深度神经网络：deep convoluntional networks(卷积深度神经网络)，我们通过详细的代码来解释这一部分，代码是用卷积神经网络来解决手写数字识别的问题，数据是MNIST data。<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602241.png" alt="201602241"><br>我们从本书之前用来解决这个问题的浅层神经网络来开始我们的卷积神经网络。通过不断的迭代，我们将构建更屌的网络。随着我们的步伐，我们将探索许多强大的技术，比如：卷积，汇集（pooling），使用GPUs来使训练比训练浅层网络更加充分，算法性更强通过我们的训练数据（当然减少过拟合），对dropout技术的使用（也是用来减少过拟合），对整个网络的使用等等。这样就能形成一个系统，表现出近似人才有的行为。对10000个MNIST测试图片（图片在训练过程中不可见），我们的系统可以正确分类9967个，这里我们挑出了被错误分类的33个图片。图片中正确分类在右上，系统给出的分类在右下：<br><img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602242.png" alt="201602242"><br>图片中许多例子即使是人类区分也是很容易分错的。举个例子，最上面那排的第3个图片，对我来说，看起来更像是9和不是8，这是人为的一个分类。我们的系统也人为他是一个9，我想这种错误至少是可以理解的吧，也许甚至应该值得表扬。我得出这个讨论结果是最近重大的一个调查表明，用神经网络（特别是卷积神经网络）来做图像识别是很好的。
-</em>　　本章剩下的是讨论从一个广阔且少细节的东西中进行深度学习的穿透力。我们会简要说下像循环神经网络（RNN），LSTM（一种时间递归神经网络）等这些的神经网络模型的调查结果和是怎么把这些模型应用到诸如语音识别，自然语言处理等其他发面。而且我们将思考神经网络和机器学习的未来，像什么人们意图驱动的用户界面，神经网络在人工智能方面扮演的角色。<br><em>　　本章放在后面几章之前，是为了整理和知道，像bp，正则化，softmax功能等等。但是，通过前面的一些章节的学习，相信看这章是不需要费很大劲的。如果费劲的话，请看章节一，神经网络的基础。如果我使用2-5章节中的概念，我会提供链接让你能在过去复习，如果有必要的话。
-</em>　　不管这是否值得一提。这不是最新也不是最伟大的神经网络教程。我们也不会训练深层网络去解决非常前沿的问题。相反，我们的重点为了去理解深层神经网络背后的一些核心原则，并做一些简单的，容易理解的MNIST问题。用另外一种话说，本章不会带你去领略前沿的风采，而只是把目的基于基础面，所以我们要让你理解本书的作用范围。<br>　　本书目前还在测试阶段，我们欢迎通知错别字等错误。请在线回复mn@michaelnielsen.org。</p>
-<h1 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h1><p>额，感觉这章没有什么翻译的必要。。。</p>
+        <h1 id="朴素贝叶斯复习"><a href="#朴素贝叶斯复习" class="headerlink" title="朴素贝叶斯复习"></a>朴素贝叶斯复习</h1><p>　　贝叶斯定理：P(A|B) = P(AB) / P(B)</p>
+<h1 id="机器学习重要概念复习："><a href="#机器学习重要概念复习：" class="headerlink" title="机器学习重要概念复习："></a>机器学习重要概念复习：</h1><pre><code>方法 = 模型 + 策略 + 算法
+损失函数：度量预测错误的程度，有0-1损失函数，平方损失函数，对数损失函数，对数损失函数等。当然越小越好
+风险函数：就是损失函数的期望，也就是对所有情况下的损失函数的值乘以发生该情况的概率做积分。这个发生该情况的概率是不知道的，知道的话也没有训练的必要了。所以有了平均损失，称为经验风险，也就是训练样本的平均损失。
+经验风险最小化和结构风险最小化：经验风险最小化是认为经验风险最小那么就是最好的，模型时条件概率分布，损失函数是对数损失函数时，经验风险最小化就等价于极大似然估计（朴素贝叶斯和这个不同，朴素贝叶斯考虑了，不同。如果样本容量小，经验风险最小化会产生过拟合的现象。结构风险最小化，就是为了对付过拟合，结构风险最小化就是正则化，就是在经验风险上加上模型复杂度的正则化项。当模型是条件概率分布，损失函数是对数函数损失，模型复杂度有模型的先验概率表示时，结构风险最小化就等价于最大后验概率估计。
+</code></pre><h1 id="距离度量学习："><a href="#距离度量学习：" class="headerlink" title="距离度量学习："></a>距离度量学习：</h1><pre><code>1.欧式距离:
+![201602261](https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602261.png)
+</code></pre><p>　　2.曼哈顿距离：也就是各个维度差的绝对值的和的距离。<br>　　3.切比雪夫距离：各个维度的差的绝对值的最大值。是超凸函数的一种，等价形式如下：<br>    <img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602262.png" alt="201602262"><br>    4.闵可夫斯基距离，是对上面几种距离的一中归纳。<br>    <img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602263.png" alt="201602263"><br>    其中p是一个变参数。<br>    当p=1时，就是曼哈顿距离<br>    当p=2时，就是欧氏距离<br>    当p趋于无穷时，就是切比雪夫距离<br>    根据变参数的不同，闵氏距离可以表示一类的距离。<br>    5.标准化欧式距离，标准化欧氏距离是针对简单欧氏距离的缺点而作的一种改进方案。标准欧氏距离的思路：既然数据各维分量的分布不一样，那先将各个分量都“标准化”到均值、方差相等。至于均值和方差标准化到多少，先复习点统计学知识。<br>    假设样本集X的数学期望或均值(mean)为m，标准差(standard deviation，方差开根)为s，那么X的“标准化变量”X*表示为：(X-m）/s，而且标准化变量的数学期望为0，方差为1。<br>　　公式如下：<br>　　<img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602264.png" alt="201602264"><br>　　如果将方差的倒数看成是一个权重，这个公式可以看成是一种加权欧氏距离(Weighted Euclidean distance)。<br>　　6.马氏距离<br>　　有M个样本向量X1~Xm，协方差矩阵记为S，均值记为向量μ，则其中样本向量X到u的马氏距离表示为：<br>　　<img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602265.png" alt="201602265"><br>　　而其中向量Xi与Xj之间的马氏距离定义为：<br>　　<img src="https://raw.githubusercontent.com/xsj4cs/xsj4cs.github.io/hexo/images/201602266.png" alt="201602266"><br>　　若协方差矩阵是单位矩阵（各个样本向量之间独立同分布），那么马氏距离和欧式距离就一样了。马氏距离可以排除变量之间的相关性的干扰。<br>    7.巴氏距离<br>    8.汉明距离</p>
 
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/machine-learning/" rel="tag">#machine learning</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/23/nerual-network/" rel="next" title="nerual_network简单介绍">
-                <i class="fa fa-chevron-left"></i> nerual_network简单介绍
+              <a href="/2016/02/24/deeplearningtr/" rel="next" title="neuralnetworksanddeeplearning第六章翻译（1）">
+                <i class="fa fa-chevron-left"></i> neuralnetworksanddeeplearning第六章翻译（1）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/02/25/naive-bayes/" rel="prev" title="机器学习学习与复习（持续更新）">
-                机器学习学习与复习（持续更新） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -398,7 +399,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">1.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#吐槽"><span class="nav-number">2.</span> <span class="nav-text">吐槽</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#朴素贝叶斯复习"><span class="nav-number">1.</span> <span class="nav-text">朴素贝叶斯复习</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习重要概念复习："><span class="nav-number">2.</span> <span class="nav-text">机器学习重要概念复习：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#距离度量学习："><span class="nav-number">3.</span> <span class="nav-text">距离度量学习：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
